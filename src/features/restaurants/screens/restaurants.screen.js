@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
 import { Searchbar } from "react-native-paper";
-import { SafeAreaView, StatusBar, View, Platform } from "react-native";
+import {
+  FlatList,
+  SafeAreaView,
+  StatusBar,
+  View,
+  Platform,
+} from "react-native";
 
-import { RestaurantInfo } from "../components/restaurant-info.component";
+import { RestaurantInfo } from "../components/RestaurantInfo";
 
 const platformSafeArea = () => {
   if (Platform.OS === "android") {
@@ -24,11 +30,6 @@ const SearchContainer = styled(View)`
   margin: ${(props) => props.theme.space.positive[3]};
 `;
 
-const RestaurantListContainer = styled(View)`
-  flex: 1;
-  padding: ${(props) => props.theme.space.positive[3]};
-`;
-
 export const RestaurantsScreen = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -44,9 +45,26 @@ export const RestaurantsScreen = () => {
             value={searchQuery}
           />
         </SearchContainer>
-        <RestaurantListContainer>
-          <RestaurantInfo />
-        </RestaurantListContainer>
+        <FlatList
+          data={[
+            { name: 1 },
+            { name: 2 },
+            { name: 3 },
+            { name: 4 },
+            { name: 5 },
+            { name: 6 },
+            { name: 7 },
+            { name: 8 },
+            { name: 9 },
+            { name: 10 },
+            { name: 11 },
+            { name: 12 },
+            { name: 13 },
+          ]}
+          renderItem={() => <RestaurantInfo />}
+          keyExtractor={(item) => item.name}
+          contentContainerStyle={{ padding: 16 }}
+        />
       </SafeView>
     </>
   );
