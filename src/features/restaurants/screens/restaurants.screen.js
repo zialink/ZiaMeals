@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components/native";
 import { Searchbar } from "react-native-paper";
 import {
@@ -10,6 +10,10 @@ import {
 } from "react-native";
 
 import { RestaurantInfo } from "../components/RestaurantInfo";
+import {
+  RestaurantsContext,
+  RestaurantsContextProvider,
+} from "../../../services/restaurants/restaurants.context";
 
 const platformSafeArea = () => {
   if (Platform.OS === "android") {
@@ -21,6 +25,12 @@ const platformSafeArea = () => {
   }
 };
 
+const RestaurantList = styled(FlatList).attrs((props) => ({
+  contentContainerStyle: {
+    padding: 16,
+  },
+}))``;
+
 const SafeView = styled(SafeAreaView)`
   flex: 1;
   margin-top: ${platformSafeArea};
@@ -31,9 +41,11 @@ const SearchContainer = styled(View)`
 `;
 
 export const RestaurantsScreen = () => {
+  const { restaurants, isLoading, errors } = useContext(RestaurantsContext);
   const [searchQuery, setSearchQuery] = useState("");
-
   const onChangeSearch = (query) => setSearchQuery(query);
+
+  //console.log(restaurants);
 
   return (
     <>
@@ -45,25 +57,12 @@ export const RestaurantsScreen = () => {
             value={searchQuery}
           />
         </SearchContainer>
-        <FlatList
-          data={[
-            { name: 1 },
-            { name: 2 },
-            { name: 3 },
-            { name: 4 },
-            { name: 5 },
-            { name: 6 },
-            { name: 7 },
-            { name: 8 },
-            { name: 9 },
-            { name: 10 },
-            { name: 11 },
-            { name: 12 },
-            { name: 13 },
-          ]}
-          renderItem={() => <RestaurantInfo />}
+        <RestaurantList
+          data={restaurants}
+          renderItem={({ item }) => {
+            return <RestaurantInfo restaurant={item} />;
+          }}
           keyExtractor={(item) => item.name}
-          contentContainerStyle={{ padding: 16 }}
         />
       </SafeView>
     </>

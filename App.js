@@ -8,8 +8,9 @@ import {
 } from "@expo-google-fonts/oswald";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 
-import { RestaurantsScreen } from "./src/features/restaurants/screens/restaurants.screen";
 import { theme } from "./src/infrasctructure/theme";
+import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
+import AppScreen from "./src/features/restaurants/screens";
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
@@ -25,7 +26,9 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <RestaurantsScreen />
+        <RestaurantsContextProvider>
+          <AppScreen />
+        </RestaurantsContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>
