@@ -3,7 +3,7 @@ import React from "react";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
-import { Text } from "../../../components/typography/Text";
+import { Text } from "../../../utils/typography/Text";
 
 import {
   Info,
@@ -15,7 +15,7 @@ import {
   Address,
   RestaurantCard,
   RestaurantCardCover,
-} from "./RestaurantStyles";
+} from "./restaurantStyles";
 
 export const RestaurantInfo = ({ restaurant = {} }) => {
   const {
