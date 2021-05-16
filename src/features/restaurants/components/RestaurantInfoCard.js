@@ -25,9 +25,10 @@ export const RestaurantInfo = ({ restaurant = {} }) => {
       "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
     ],
     address = "No 3, Sasha Street, Ipaja, Lagos",
-    isOpenNow = true,
-    rating = 4,
-    //isClosedTemporarily = true,
+    isOpenNow = false,
+    rating = 5,
+    isClosedTemporarily = false,
+    placeId,
   } = restaurant;
 
   const ratingArray = Array.from(new Array(Math.floor(rating)));
@@ -39,18 +40,23 @@ export const RestaurantInfo = ({ restaurant = {} }) => {
         <Text variant="label">{name}</Text>
         <Container>
           <Rating>
-            {ratingArray.map((e, i) => (
-              <SvgXml key={i} xml={star} width={20} height={20} />
+            {ratingArray.map((_, i) => (
+              <SvgXml
+                key={`star-${placeId}-${i}`}
+                xml={star}
+                width={20}
+                height={20}
+              />
             ))}
           </Rating>
           <RestaurantOpenedOrClosed>
-            {/* {isClosedTemporarily && (
+            {isClosedTemporarily && (
               <RestaurantClosed>Closed Temporarily</RestaurantClosed>
-            )} */}
-            {isOpenNow ? (
-              <SvgXml xml={open} width={20} height={20} />
-            ) : (
+            )}
+            {!isOpenNow && !isClosedTemporarily ? (
               <RestaurantClosed>Closed</RestaurantClosed>
+            ) : (
+              isOpenNow && <SvgXml xml={open} width={20} height={20} />
             )}
             <Icon source={{ uri: icon }} />
           </RestaurantOpenedOrClosed>

@@ -8,15 +8,10 @@ export const LocationContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [location, setLocation] = useState({ lat: 43.653225, lng: -79.383186 });
-  const [keyword, setKeyword] = useState("");
-
-  const onPressSearch = (searchValue) => {
-    setKeyword(searchValue.toLowerCase());
-  };
 
   const onSearch = (searchWord) => {
     setIsLoading(true);
-    locationRequest(searchWord)
+    locationRequest(searchWord.toLowerCase())
       .then(locationTransform)
       .then((result) => {
         setIsLoading(false);
@@ -27,9 +22,6 @@ export const LocationContextProvider = ({ children }) => {
         setError(err);
       });
   };
-  useEffect(() => {
-    onSearch(keyword);
-  }, [keyword]);
 
   return (
     <LocationContext.Provider
@@ -37,8 +29,7 @@ export const LocationContextProvider = ({ children }) => {
         isLoading,
         error,
         location,
-        onPressSearch,
-        keyword,
+        onSearch,
       }}
     >
       {children}

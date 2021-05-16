@@ -9,8 +9,6 @@ import { RestaurantList, SafeView, Loading } from "./restaurantScreenStyles";
 export const RestaurantsScreen = () => {
   const { restaurants, isLoading, errors } = useContext(RestaurantsContext);
 
-  //console.log(restaurants);
-
   return (
     <>
       <SafeView>
