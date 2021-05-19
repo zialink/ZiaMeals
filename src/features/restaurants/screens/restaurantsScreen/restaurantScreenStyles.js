@@ -13,7 +13,7 @@ export const platformSafeArea = () => {
   } else if (Platform.OS === "ios") {
     return (props) => props.theme.space.positive[0];
   } else {
-    return (props) => props.theme.space.positive[3];
+    return (props) => props.theme.space.positive[1];
   }
 };
 
@@ -22,6 +22,10 @@ export const RestaurantList = styled(FlatList).attrs((props) => ({
     padding: 16,
   },
 }))``;
+
+export const RestaurantDetailsPageStyle = styled(View)`
+  padding: ${(props) => props.theme.space.positive[2]};
+`;
 
 export const SafeView = styled(SafeAreaView)`
   flex: 1;
