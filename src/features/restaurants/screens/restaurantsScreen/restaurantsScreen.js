@@ -6,6 +6,7 @@ import { Search } from "../../../search/Search";
 import { RestaurantInfo } from "../../components/RestaurantInfoCard";
 import { RestaurantsContext } from "../../../../services/restaurants/restaurantsContext";
 import { RestaurantList, SafeView, Loading } from "./restaurantScreenStyles";
+import { SearchContainer } from "../../components/restaurantStyles";
 
 export const RestaurantsScreen = ({ navigation }) => {
   const { restaurants, isLoading, errors } = useContext(RestaurantsContext);
@@ -13,7 +14,9 @@ export const RestaurantsScreen = ({ navigation }) => {
   return (
     <>
       <SafeView>
-        <Search />
+        <SearchContainer>
+          <Search />
+        </SearchContainer>
         <Loading elevation={7}>
           {isLoading && (
             <ActivityIndicator

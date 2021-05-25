@@ -2,27 +2,24 @@ import React, { useState, useContext, useEffect } from "react";
 import { Searchbar } from "react-native-paper";
 import { LocationContext } from "../../services/location/locationContext";
 
-import { SearchContainer } from "./searchStyles";
-
-export const Search = () => {
-  const { onSearch } = useContext(LocationContext);
-  const [searchQuery, setSearchQuery] = useState("");
+export const Search = ({ icon }) => {
+  const { onSearch, keyword } = useContext(LocationContext);
+  const [searchQuery, setSearchQuery] = useState(keyword);
   const onChangeSearch = (query) => setSearchQuery(query);
 
-  useEffect(() => {
+  /*  useEffect(() => {
     onSearch(searchQuery);
-  }, []);
+  }, []); */
 
   return (
-    <SearchContainer>
-      <Searchbar
-        placeholder="Search Restaurant Location"
-        onChangeText={onChangeSearch}
-        value={searchQuery}
-        onSubmitEditing={() => {
-          onSearch(searchQuery);
-        }}
-      />
-    </SearchContainer>
+    <Searchbar
+      placeholder="Search Restaurant Location"
+      onChangeText={onChangeSearch}
+      icon={icon}
+      value={searchQuery}
+      onSubmitEditing={() => {
+        onSearch(searchQuery);
+      }}
+    />
   );
 };

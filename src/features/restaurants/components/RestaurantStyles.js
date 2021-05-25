@@ -45,3 +45,7 @@ export const Icon = styled(Image)`
   padding: ${(props) => props.theme.space.positive[2]};
   margin-left: ${(props) => props.theme.space.positive[3]};
 `;
+
+export const SearchContainer = styled.View`
+  padding: ${(props) => props.theme.space.positive[3]};
+`;
