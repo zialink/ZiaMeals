@@ -5,7 +5,7 @@ import { RestaurantsContext } from "../../../services/restaurants/restaurantsCon
 
 import { Search } from "../../search/Search";
 import { Map, SearchContainer } from "../mapStyles";
-import { MapCallout } from "../components/MapCallout";
+import { CompactRestaurantInfo } from "../../restaurants/components/CompactRestaurantInfo";
 
 export const MapScreen = ({ navigation }) => {
   const [latDelta, setLatDelta] = useState(0);
@@ -51,7 +51,7 @@ export const MapScreen = ({ navigation }) => {
                   })
                 }
               >
-                <MapCallout restaurant={restaurant} />
+                <CompactRestaurantInfo isMap restaurant={restaurant} />
               </MapView.Callout>
             </MapView.Marker>
           );

@@ -25,6 +25,7 @@ export const RestaurantList = styled(FlatList).attrs((props) => ({
 
 export const RestaurantDetailsPageStyle = styled(View)`
   padding: ${(props) => props.theme.space.positive[2]};
+  flex: 1;
 `;
 
 export const SafeView = styled(SafeAreaView)`
