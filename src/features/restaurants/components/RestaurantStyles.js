@@ -1,6 +1,7 @@
 import styled from "styled-components/native";
 import { Text, View, Image } from "react-native";
 import { Card } from "react-native-paper";
+import { WebView } from "react-native-webview";
 
 export const Info = styled(View)`
   padding: ${(props) => props.theme.space.positive[3]};
@@ -44,4 +45,31 @@ export const Icon = styled(Image)`
   height: ${(props) => props.theme.sizes[1]};
   padding: ${(props) => props.theme.space.positive[2]};
   margin-left: ${(props) => props.theme.space.positive[3]};
+`;
+
+export const SearchContainer = styled.View`
+  padding: ${(props) => props.theme.space.positive[3]};
+`;
+
+export const MapText = styled.Text`
+  font-family: ${(props) => props.theme.fonts.body}
+  font-size: ${(props) => props.theme.fontSizes.body}
+`;
+
+export const CompactWebView = styled(WebView)`
+  border-radius: 10px;
+  width: 150px;
+  height: 100px;
+`;
+
+export const CompactImage = styled.Image`
+  border-radius: 10px;
+  width: 150px;
+  height: 100px;
+`;
+
+export const MapRestaurantView = styled.View`
+  padding: 10px;
+  align-items: center;
+  max-width: 150px;
 `;
