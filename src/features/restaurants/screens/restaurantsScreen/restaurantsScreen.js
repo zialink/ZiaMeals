@@ -14,6 +14,19 @@ export const RestaurantsScreen = ({ navigation }) => {
   const { favourites } = useContext(FavouritesContext);
   const { restaurants, isLoading, errors } = useContext(RestaurantsContext);
   const [isToggled, setIsToggled] = useState(false);
+  const [loader, setLoader] = useState(false);
+
+  const onEndReached = (page) => {
+    if (next && !loader) {
+      setPage(page + 1);
+    }
+  };
+
+  const loadData = async () => {
+    setLoader(true);
+    const resp = await getData();
+    setLoader(false);
+  };
 
   return (
     <>
@@ -41,6 +54,7 @@ export const RestaurantsScreen = ({ navigation }) => {
         </Loading>
         <RestaurantList
           data={restaurants}
+          onEndReached={onEndReached}
           renderItem={({ item }) => {
             return (
               <TouchableOpacity
