@@ -6,10 +6,11 @@ import { RestaurantsContext } from "../../../services/restaurants/restaurantsCon
 import { Search } from "../../search/Search";
 import { Map, SearchContainer } from "../mapStyles";
 import { CompactRestaurantInfo } from "../../restaurants/components/CompactRestaurantInfo";
+import { Loading } from "../../../utils/loading/Loading";
 
 export const MapScreen = ({ navigation }) => {
   const [latDelta, setLatDelta] = useState(0);
-  const { location } = useContext(LocationContext);
+  const { location, isLoading } = useContext(LocationContext);
   const { restaurants = [] } = useContext(RestaurantsContext);
   const { viewport, lng, lat } = location;
 
@@ -25,6 +26,7 @@ export const MapScreen = ({ navigation }) => {
       <SearchContainer>
         <Search icon="map" />
       </SearchContainer>
+      {isLoading && <Loading />}
       <Map
         region={{
           latitude: lat,

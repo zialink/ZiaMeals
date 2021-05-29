@@ -1,6 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { SettingsScreen } from "../../features/restaurants/screens/settingsScreen/settingsScreen";
+import { SettingsScreen } from "../../features/settings/screens/settingsScreen";
 
 const SettingsStack = createStackNavigator();
 

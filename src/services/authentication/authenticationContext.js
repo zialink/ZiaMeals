@@ -1,6 +1,7 @@
 import React, { createContext, useState } from "react";
+import firebase from "firebase";
 
-import { loginRequest } from "./authenticationService";
+import { loginRequest, registerRequest } from "./authenticationService";
 
 export const AuthenticationContext = createContext();
 
@@ -8,7 +9,13 @@ export const AuthenticationContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  firebase.auth().onAuthStateChanged((usr) => {
+    if (usr) {
+      setUser(usr);
+      setIsLoading(false);
+    }
+  });
 
   const onLogin = (email, password) => {
     setIsLoading(true);
@@ -16,7 +23,27 @@ export const AuthenticationContextProvider = ({ children }) => {
       .then((userCredential) => {
         setIsLoading(false);
         setUser(userCredential);
-        setIsAuthenticated(true);
+      })
+      .catch((e) => {
+        setIsLoading(false);
+        setError(e.toString());
+      });
+  };
+
+  const onLogout = () => {
+    setUser(null);
+    return firebase.auth().signOut();
+  };
+  const onRegister = (email, password, confirmPassword) => {
+    if (password !== confirmPassword) {
+      setError("Error: Passwords do not match!");
+      return;
+    }
+    setIsLoading(true);
+    registerRequest(email, password)
+      .then((userCredential) => {
+        setIsLoading(false);
+        setUser(userCredential);
       })
       .catch((e) => {
         setIsLoading(false);
@@ -25,7 +52,15 @@ export const AuthenticationContextProvider = ({ children }) => {
   };
   return (
     <AuthenticationContext.Provider
-      value={{ isAuthenticated, user, isLoading, error, onLogin }}
+      value={{
+        isAuthenticated: !!user,
+        user,
+        isLoading,
+        error,
+        onLogin,
+        onRegister,
+        onLogout,
+      }}
     >
       {children}
     </AuthenticationContext.Provider>

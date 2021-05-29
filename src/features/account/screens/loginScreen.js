@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authenticationContext";
+import { Loading } from "../../../utils/loading/Loading";
 
 import {
   ImageBG,
@@ -17,7 +18,7 @@ export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { onLogin, error } = useContext(AuthenticationContext);
+  const { onLogin, error, isLoading } = useContext(AuthenticationContext);
 
   const handleOnPress = () => {
     if (email && password) {
@@ -27,6 +28,7 @@ export const LoginScreen = ({ navigation }) => {
   return (
     <ImageBG>
       <GuestView>
+        {isLoading && <Loading />}
         <Title>Zia Meals</Title>
         <AccountContainer>
           <AuthTextInput

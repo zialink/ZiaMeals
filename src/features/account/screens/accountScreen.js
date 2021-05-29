@@ -1,4 +1,5 @@
 import React from "react";
+import LottieView from "lottie-react-native";
 
 import {
   ImageBG,
@@ -6,12 +7,22 @@ import {
   AccountContainer,
   AuthButton,
   Title,
+  AnimationWrapper,
 } from "../accountStyles";
 
 export const AccountScreen = ({ navigation }) => {
   return (
     <ImageBG>
       <GuestView>
+        <AnimationWrapper>
+          <LottieView
+            key="animation"
+            autoPlay
+            loop
+            resizeMode="cover"
+            source={require("../../../../assets/watermelon.json")}
+          />
+        </AnimationWrapper>
         <Title>Zia Meals</Title>
         <AccountContainer>
           <AuthButton

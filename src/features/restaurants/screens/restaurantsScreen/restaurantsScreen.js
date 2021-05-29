@@ -5,10 +5,11 @@ import { TouchableOpacity } from "react-native";
 import { Search } from "../../../search/Search";
 import { RestaurantInfo } from "../../components/RestaurantInfoCard";
 import { RestaurantsContext } from "../../../../services/restaurants/restaurantsContext";
-import { RestaurantList, SafeView, Loading } from "./restaurantScreenStyles";
+import { RestaurantList, SafeView } from "./restaurantScreenStyles";
 import { SearchContainer } from "../../components/restaurantStyles";
 import { FavouritesBar } from "../../../favourite/FavouriteBar";
 import { FavouritesContext } from "../../../../services/favourites/favouritesContext";
+import { Loading } from "../../../../utils/loading/Loading";
 
 export const RestaurantsScreen = ({ navigation }) => {
   const { favourites } = useContext(FavouritesContext);
@@ -43,15 +44,7 @@ export const RestaurantsScreen = ({ navigation }) => {
             onNavigate={navigation.navigate}
           />
         )}
-        <Loading elevation={7}>
-          {isLoading && (
-            <ActivityIndicator
-              animating={true}
-              color={Colors.red800}
-              size="large"
-            />
-          )}
-        </Loading>
+        {isLoading && <Loading />}
         <RestaurantList
           data={restaurants}
           onEndReached={onEndReached}
