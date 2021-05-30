@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import { ScrollView, TouchableOpacity } from "react-native";
 
-import { CompactRestaurantInfo } from "../restaurants/components/CompactRestaurantInfo";
-import { FavouritesWrapper, FavouritesSpacing } from "./favouriteStyles";
-import { Text } from "../../utils/typography/Text";
+import { CompactRestaurantInfo } from "../../restaurants/components/CompactRestaurantInfo";
+import { FavouritesWrapper, FavouritesSpacing } from "../favouriteStyles";
+import { Text } from "../../../utils/typography/Text";
 
 export const FavouritesBar = ({ favourites, onNavigate }) => {
   if (!favourites.length) {

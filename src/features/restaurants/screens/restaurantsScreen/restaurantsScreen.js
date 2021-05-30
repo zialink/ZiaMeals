@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { ActivityIndicator, Colors } from "react-native-paper";
 import { TouchableOpacity } from "react-native";
 
 import { Search } from "../../../search/Search";
@@ -7,7 +6,7 @@ import { RestaurantInfo } from "../../components/RestaurantInfoCard";
 import { RestaurantsContext } from "../../../../services/restaurants/restaurantsContext";
 import { RestaurantList, SafeView } from "./restaurantScreenStyles";
 import { SearchContainer } from "../../components/restaurantStyles";
-import { FavouritesBar } from "../../../favourite/FavouriteBar";
+import { FavouritesBar } from "../../../favourite/components/FavouriteBar";
 import { FavouritesContext } from "../../../../services/favourites/favouritesContext";
 import { Loading } from "../../../../utils/loading/Loading";
 

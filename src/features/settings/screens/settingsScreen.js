@@ -1,20 +1,20 @@
 import React, { useContext } from "react";
-import styled from "styled-components/native";
-import { Text } from "react-native";
-import { AuthButton } from "./settingsScreenStyle";
+
+import { AuthButton, AvatarIcon, SettingsView } from "./settingsScreenStyle";
 import { AuthenticationContext } from "../../../services/authentication/authenticationContext";
 
-const SettingsView = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const SettingsScreen = () => {
+export const SettingsScreen = ({ navigation }) => {
   const { onLogout } = useContext(AuthenticationContext);
   return (
     <SettingsView>
-      <Text>Settings</Text>
+      <AvatarIcon />
+      <AuthButton
+        mode="contained"
+        icon="heart"
+        onPress={() => navigation.navigate("Favourites")}
+      >
+        Favourites
+      </AuthButton>
       <AuthButton mode="contained" onPress={() => onLogout()}>
         Logout
       </AuthButton>

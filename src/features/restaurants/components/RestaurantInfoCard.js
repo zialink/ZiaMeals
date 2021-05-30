@@ -4,7 +4,7 @@ import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
 import { Text } from "../../../utils/typography/Text";
-import { Favourite } from "../../favourite/Favourite";
+import { Favourite } from "../../favourite/components/Favourite";
 
 import {
   Info,

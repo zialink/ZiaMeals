@@ -57,13 +57,13 @@ export const MapText = styled.Text`
 `;
 
 export const CompactWebView = styled(WebView)`
-  border-radius: 10px;
+  border-radius: 8px;
   width: 150px;
   height: 100px;
 `;
 
 export const CompactImage = styled.Image`
-  border-radius: 10px;
+  border-radius: 8px;
   width: 150px;
   height: 100px;
 `;

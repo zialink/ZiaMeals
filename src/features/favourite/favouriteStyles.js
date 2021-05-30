@@ -14,3 +14,8 @@ export const FavouritesWrapper = styled.View`
 export const FavouritesSpacing = styled.View`
   margin-right: 15px;
 `;
+
+export const FavouritesScreenText = styled.Text`
+  padding: ${(props) => props.theme.space.positive[3]};
+  margin-top: ${(props) => props.theme.space.positive[2]};
+`;
