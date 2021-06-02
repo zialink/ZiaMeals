@@ -9,6 +9,7 @@ import {
   Title,
   AnimationWrapper,
 } from "../accountStyles";
+import { FadeInView } from "../../../utils/Animations/fadeAnimation";
 
 export const AccountScreen = ({ navigation }) => {
   return (
@@ -20,7 +21,7 @@ export const AccountScreen = ({ navigation }) => {
             autoPlay
             loop
             resizeMode="cover"
-            source={require("../../../../assets/watermelon.json")}
+            source={require("../../../../assets/31454-food-prepared-food-app.json")}
           />
         </AnimationWrapper>
         <Title>Zia Meals</Title>

@@ -9,6 +9,7 @@ import { SearchContainer } from "../../components/restaurantStyles";
 import { FavouritesBar } from "../../../favourite/components/FavouriteBar";
 import { FavouritesContext } from "../../../../services/favourites/favouritesContext";
 import { Loading } from "../../../../utils/loading/Loading";
+import { FadeInView } from "../../../../utils/Animations/fadeAnimation";
 
 export const RestaurantsScreen = ({ navigation }) => {
   const { favourites } = useContext(FavouritesContext);
@@ -56,7 +57,9 @@ export const RestaurantsScreen = ({ navigation }) => {
                   })
                 }
               >
-                <RestaurantInfo restaurant={item} />
+                <FadeInView>
+                  <RestaurantInfo restaurant={item} />
+                </FadeInView>
               </TouchableOpacity>
             );
           }}
