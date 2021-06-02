@@ -33,9 +33,3 @@ export const SafeView = styled(SafeAreaView)`
   margin-top: ${platformSafeArea};
   background-color: ${(props) => props.theme.colors.bg.primary};
 `;
-export const Loading = styled(View)`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-left: -25px;
-`;

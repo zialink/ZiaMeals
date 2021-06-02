@@ -1,3 +1,4 @@
+import "react-native-gesture-handler";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import React from "react";
 import { ThemeProvider } from "styled-components/native";
@@ -6,13 +7,26 @@ import {
   useFonts as useOswald,
   Oswald_400Regular,
 } from "@expo-google-fonts/oswald";
+import firebase from "firebase";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 
+import { AppNavigation } from "./src/infrasctructure/navigator/";
 import { theme } from "./src/infrasctructure/theme";
-import { LocationContextProvider } from "./src/services/location/locationContext";
-import { RestaurantsContextProvider } from "./src/services/restaurants/restaurantsContext";
-import { FavouritesContextProvider } from "./src/services/favourites/favouritesContext";
-import AppNavigator from "./src/infrasctructure/navigator";
+import { AuthenticationContextProvider } from "./src/services/authentication/authenticationContext";
+
+// Initialize Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyCbAlzqTplUKnaCJmKSEAydMiySAP1QzAk",
+  authDomain: "ziameals.firebaseapp.com",
+  projectId: "ziameals",
+  storageBucket: "ziameals.appspot.com",
+  messagingSenderId: "522209845763",
+  appId: "1:522209845763:web:2eb048d05b165edbba2436",
+};
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
@@ -28,13 +42,9 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <FavouritesContextProvider>
-          <LocationContextProvider>
-            <RestaurantsContextProvider>
-              <AppNavigator />
-            </RestaurantsContextProvider>
-          </LocationContextProvider>
-        </FavouritesContextProvider>
+        <AuthenticationContextProvider>
+          <AppNavigation />
+        </AuthenticationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>

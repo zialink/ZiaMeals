@@ -1,15 +1,14 @@
 import React, { useContext } from "react";
 import { AntDesign } from "@expo/vector-icons";
 
-import { FavouritesContext } from "../../services/favourites/favouritesContext";
-import { FavouriteButton } from "./favouriteStyles";
+import { FavouritesContext } from "../../../services/favourites/favouritesContext";
+import { FavouriteButton } from "../favouriteStyles";
 
 export const Favourite = ({ restaurant }) => {
   const { favourites, addToFavourites, removeFromFavourites } = useContext(
     FavouritesContext
   );
-  //   console.log(favourites.length);
-  //   console.log(restaurant.placeId);
+
   const isFavourite = favourites.find(
     (favourite) => favourite.placeId === restaurant.placeId
   );
