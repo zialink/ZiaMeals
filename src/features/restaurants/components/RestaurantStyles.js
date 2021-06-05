@@ -1,7 +1,9 @@
-import styled from "styled-components/native";
+import styled from "styled-components";
 import { Text, View, Image } from "react-native";
-import { Card } from "react-native-paper";
+import { Card, Button } from "react-native-paper";
 import { WebView } from "react-native-webview";
+
+import { colors } from "../../../infrasctructure/theme/colors";
 
 export const Info = styled(View)`
   padding: ${(props) => props.theme.space.positive[3]};
@@ -72,4 +74,12 @@ export const MapRestaurantView = styled.View`
   padding: 10px;
   align-items: center;
   max-width: 150px;
+`;
+
+export const OrderButton = styled(Button).attrs({
+  color: colors.brand.branded,
+})`
+  padding: ${(props) => props.theme.space.positive[2]};
+  width: 80%;
+  align-self: center;
 `;
