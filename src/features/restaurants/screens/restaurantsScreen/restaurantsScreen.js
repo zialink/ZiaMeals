@@ -4,12 +4,13 @@ import { TouchableOpacity } from "react-native";
 import { Search } from "../../../search/Search";
 import { RestaurantInfo } from "../../components/RestaurantInfoCard";
 import { RestaurantsContext } from "../../../../services/restaurants/restaurantsContext";
-import { RestaurantList, SafeView } from "./restaurantScreenStyles";
+import { RestaurantList } from "./restaurantScreenStyles";
 import { SearchContainer } from "../../components/restaurantStyles";
 import { FavouritesBar } from "../../../favourite/components/FavouriteBar";
 import { FavouritesContext } from "../../../../services/favourites/favouritesContext";
 import { Loading } from "../../../../utils/loading/Loading";
 import { FadeInView } from "../../../../utils/Animations/fadeAnimation";
+import { SafeView } from "../../../../utils/safeView/SafeView";
 
 export const RestaurantsScreen = ({ navigation }) => {
   const { favourites } = useContext(FavouritesContext);
