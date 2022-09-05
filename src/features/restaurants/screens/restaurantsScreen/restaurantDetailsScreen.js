@@ -9,9 +9,10 @@ import { RestaurantDetailsPageStyle } from "./restaurantScreenStyles";
 import { CartContext } from "../../../../services/cart/cartContext";
 
 export const RestaurantDetailsScreen = ({ route, navigation }) => {
-  const { addToCart } = useContext(CartContext);
-
+  const { addToCart, sum } = useContext(CartContext);
   const { restaurant } = route.params;
+
+  let cartId = sum * Math.random();
   return (
     <RestaurantDetailsPageStyle>
       <RestaurantInfo restaurant={restaurant} />
@@ -21,7 +22,14 @@ export const RestaurantDetailsScreen = ({ route, navigation }) => {
           icon="cash-usd"
           mode="contained"
           onPress={() => {
-            addToCart({ item: "special", price: 1299 }, restaurant);
+            addToCart(
+              {
+                item: "special",
+                price: 1299,
+                id: cartId,
+              },
+              restaurant
+            );
             navigation.navigate("Checkout");
           }}
         >

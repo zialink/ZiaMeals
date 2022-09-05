@@ -6,9 +6,21 @@ import { AuthenticationContext } from "../authentication/authenticationContext";
 export const CartContext = createContext();
 
 export const CartContextProvider = ({ children }) => {
+  const [sum, setSum] = useState(0);
   const { user } = useContext(AuthenticationContext);
   const [cart, setCart] = useState([]);
   const [restaurant, setRestaurant] = useState(null);
+
+  useEffect(() => {
+    if (!cart.length) {
+      setSum(0);
+    } else {
+      const newSum = cart.reduce((acc, { price }) => {
+        return (acc += price);
+      }, 0);
+      setSum(newSum / 100);
+    }
+  }, [cart]);
 
   const add = (item, rst) => {
     if (!restaurant || restaurant.placeId !== rst.placeId) {
@@ -30,6 +42,7 @@ export const CartContextProvider = ({ children }) => {
         clearCart: clear,
         restaurant,
         cart,
+        sum,
       }}
     >
       {children}
